@@ -11,7 +11,7 @@ module Geokit
       # Template method which does the reverse-geocode lookup.
       def self.do_reverse_geocode(latlng, options = {})
         latlng = LatLng.normalize(latlng)
-        url =  "#{protocol}://api.tiles.mapbox.com/v4/geocode/mapbox.places-v1/"
+        url =  "#{protocol}://api.tiles.mapbox.com/v4/geocode/mapbox.places/"
         url += "#{latlng.lng},#{latlng.lat}.json?access_token=#{key}"
         process :json, url
       end
@@ -19,7 +19,7 @@ module Geokit
       # Template method which does the geocode lookup.
       def self.do_geocode(address, options = {})
         address_str = address.is_a?(GeoLoc) ? address.to_geocodeable_s : address
-        url =  "#{protocol}://api.tiles.mapbox.com/v4/geocode/mapbox.places-v1/"
+        url =  "#{protocol}://api.tiles.mapbox.com/v4/geocode/mapbox.places/"
         url += "#{Geokit::Inflector.url_escape(address_str)}.json?access_token=#{key}"
         process :json, url
       end
